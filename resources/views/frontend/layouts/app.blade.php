@@ -21,15 +21,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="frontend/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="frontend/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="frontend/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="{{asset('frontend/lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="frontend/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="frontend/css/style.css" rel="stylesheet">
+    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -50,17 +50,17 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="frontend/lib/wow/wow.min.js"></script>
-    <script src="frontend/lib/easing/easing.min.js"></script>
-    <script src="frontend/lib/waypoints/waypoints.min.js"></script>
-    <script src="frontend/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="frontend/lib/counterup/counterup.min.js"></script>
-    <script src="frontend/lib/parallax/parallax.min.js"></script>
-    <script src="frontend/lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="frontend/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="{{asset('frontend/lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('frontend/lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('frontend/lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('frontend/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('frontend/lib/counterup/counterup.min.js')}}"></script>
+    <script src="{{asset('frontend/lib/parallax/parallax.min.js')}}"></script>
+    <script src="{{asset('frontend/lib/isotope/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('frontend/lib/lightbox/js/lightbox.min.js')}}"></script>
 
     <!-- Template Javascript -->
-    <script src="frontend/js/main.js"></script>
+    <script src="{{asset('frontend/js/main.js')}}"></script>
 
     @stack('scripts')
 

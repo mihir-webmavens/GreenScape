@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -13,7 +14,7 @@ Route::fallback(function () {
     return view('frontend.404');
 });
 
-Route::view('/shop','frontend.shop')->name('shop');
+Route::get('/shop',[ProductController::class,'shopShow'])->name('shop');
 Route::view('/login','frontend.login')->name('login');
 Route::post('/login',[UserController::class,'LoginProcess'])->name('loginProcess');
 Route::view('/register','frontend.register')->name('register');
@@ -34,4 +35,9 @@ Route::middleware('auth')->group(function(){
     Route::view('/feature','frontend.feature')->name('feature');
     Route::view('/service','frontend.service')->name('service');
     Route::view('/project','frontend.project')->name('project');
+    Route::post('/addToCart',[ProductController::class,'addToCart'])->name('addToCart');
+Route::get('/shop-single/{id}',[ProductController::class,'shopSingleShow'])->name('shopSingleShow');
+Route::view('cart','frontend.cart')->name('cart');
+
 });
+Route::view('test', 'Testing');
