@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
@@ -39,6 +40,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/shop-single/{id}',[ProductController::class,'shopSingleShow'])->name('shopSingleShow');
     Route::get('cart',[ProductController::class,'cart'])->name('cart');
     Route::post('cart/remove',[ProductController::class,'cartItemRemove'])->name('cart.remove');
+    Route::get('checkout',[OrderController::class,'checkout'])->name('checkout');
+    Route::post('checkout',[OrderController::class,'checkoutProcess'])->name('checkoutProcess');
+    Route::post('checkout',[OrderController::class,'checkoutProcessWithAddress'])->name('checkoutProcessWithAddress');
 
 });
 Route::view('test', 'Testing');

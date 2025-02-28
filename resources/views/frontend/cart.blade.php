@@ -60,7 +60,7 @@
                     <p>Subtotal: &#8377;<span id="subtotal">{{$subtotal}}</span></p>
                     <p>Flate Rate: &#8377;{{$flateRate = 20}}</p>
                     <p><strong>Total: &#8377; <span id="total"> {{$subtotal!= 0 ? $subtotal + $flateRate : 0}} </span></strong></p>
-                    <button class="btn btn-success btn-block">Proceed to Checkout</button>
+                    <a href="{{route('checkout')}}" class="btn btn-success btn-block">Proceed to Checkout</a>
                 </div>
             </div>
         </div>

@@ -5,6 +5,13 @@
       <div class="container py-5">
         <div class="row">
 
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+           
+            @endsession
 
             <div class="col-lg-9">
                 <div class="row">
@@ -21,8 +28,8 @@
                     @foreach ($products as $product)
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="{{asset($product->image)}}" alt="Product Image">
+                            <div class="card rounded-0" >
+                                <img class="card-img rounded-0 img-fluid" src="{{asset($product->image)}}" alt="Product Image" style="height: 257px;">
                             </div>
                             <div class="card-body">
                                 <a href="{{route('shopSingleShow',$product->id)}}" class="h3 text-decoration-none">{{$product->name}}</a>

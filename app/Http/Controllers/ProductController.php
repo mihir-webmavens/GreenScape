@@ -19,7 +19,7 @@ class ProductController extends Controller
         return view('frontend.shop',compact('products'));
     }
     public function addToCart(Request $request){
-        $item = Cart::find($request->product_id);
+        $item = Cart::where('product_id',$request->product_id)->first();
         if($item){
             $item->quantity += $request->quantity;
             $item->save();
@@ -40,8 +40,8 @@ class ProductController extends Controller
     if($request->ajax()){
         Cart::find($request->cart_id)->delete();
         return response()->json(['message'=>'Item removed from cart successfully']);
-
-    }
-}
+    }else{
+        return response()->json(['error'=>'Item not removed from cart']);
+    }}
 
 }
