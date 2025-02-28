@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Psy\CodeCleaner\ReturnTypePass;
+
 
 class ProductController extends Controller
 {
@@ -33,5 +32,16 @@ class ProductController extends Controller
         }
         return redirect()->back()->with('message','Product added to cart successfully');
     }
+    public function cart(){
+       $items = Cart::with('product')->where('user_id',auth()->id())->get();
+       return view('frontend.cart',compact('items'));
+    }
+    public function cartItemRemove(Request $request){
+    if($request->ajax()){
+        Cart::find($request->cart_id)->delete();
+        return response()->json(['message'=>'Item removed from cart successfully']);
+
+    }
+}
 
 }

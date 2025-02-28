@@ -36,8 +36,9 @@ Route::middleware('auth')->group(function(){
     Route::view('/service','frontend.service')->name('service');
     Route::view('/project','frontend.project')->name('project');
     Route::post('/addToCart',[ProductController::class,'addToCart'])->name('addToCart');
-Route::get('/shop-single/{id}',[ProductController::class,'shopSingleShow'])->name('shopSingleShow');
-Route::view('cart','frontend.cart')->name('cart');
+    Route::get('/shop-single/{id}',[ProductController::class,'shopSingleShow'])->name('shopSingleShow');
+    Route::get('cart',[ProductController::class,'cart'])->name('cart');
+    Route::post('cart/remove',[ProductController::class,'cartItemRemove'])->name('cart.remove');
 
 });
 Route::view('test', 'Testing');
