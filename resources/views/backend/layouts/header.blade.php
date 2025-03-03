@@ -149,7 +149,7 @@
                       </div>
                       <div class="notif-content">
                         <span class="subject">Talha</span>
-                        <span class="block"> Hi, Apa Kabar ? </span>
+                        <span class="block"> {{auth()->user()->name}}</span>
                         <span class="time">17 minutes ago</span>
                       </div>
                     </a>
@@ -329,14 +329,14 @@
             >
               <div class="avatar-sm">
                 <img
-                  src="assets/img/profile.jpg"
+                  src="{{asset(auth()->user()->profile)}}"
                   alt="..."
                   class="avatar-img rounded-circle"
                 />
               </div>
               <span class="profile-username">
                 <span class="op-7">Hi,</span>
-                <span class="fw-bold">Hizrian</span>
+                <span class="fw-bold">{{auth()->user()->name}}</span>
               </span>
             </a>
             <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -345,13 +345,13 @@
                   <div class="user-box">
                     <div class="avatar-lg">
                       <img
-                        src="assets/img/profile.jpg"
+                        src="{{asset(auth()->user()->profile)}}"
                         alt="image profile"
                         class="avatar-img rounded"
                       />
                     </div>
                     <div class="u-text">
-                      <h4>Hizrian</h4>
+                      <h4>{{auth()->user()->name}}</h4>
                       <p class="text-muted">hello@example.com</p>
                       <a
                         href="profile.html"

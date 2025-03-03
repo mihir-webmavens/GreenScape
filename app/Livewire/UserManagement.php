@@ -17,6 +17,11 @@ class UserManagement extends Component
         $this->users = User::where('role', 'user')->get();
     }
 
+    public function addUserForm(){
+        $this->name = $this->email = $this->age = $this->phone = $this->role = '';
+        $this->showModal = true;
+    }
+
     public function editUser($id)
     {
         $user = User::findOrFail($id);
@@ -43,20 +48,22 @@ class UserManagement extends Component
             'role' => 'required',
         ]);
 
-        if ($this->user_id) {
-            $user = User::find($this->user_id);
-            $user->update([
+
+            $user = User::updateOrCreate(['id' =>$this->user_id],[
                 'name' => $this->name,
                 'email' => $this->email,
                 'age' => $this->age,
                 'phone' => $this->phone,
                 'role' => $this->role,
+                'profile' => 'img/users/default1.png',
+                'password' => '123456',
             ]);
         $this->users = User::where('role', 'user')->get();
-
+        if ($this->user_id) {
             session()->flash('message', 'User updated successfully.');
+        } else {
+            session()->flash('message', 'User created successfully.');
         }
-
         $this->showModal = false;
     }
 

@@ -21,7 +21,7 @@
                             <tr>
                                 <td>{{$item->product->name}}</td>
                                 <td>
-                                    <input type="number" min="1" class="form-control" value="{{$item->quantity}}" wire:change="updateQuantity({{$item->id}}, $event.target.value)">
+                                    <input type="number" min="1" max="18" class="form-control" value="{{$item->quantity}}" wire:change="updateQuantity({{$item->id}}, $event.target.value)" oninput="this.value = Math.max(1, Math.min(18, this.value))">
                                 </td>
                                 <td>{{$item->product->price}}</td>
                                 <td>{{ number_format($item->product->price * $item->quantity, 2) }}</td>
@@ -44,7 +44,7 @@
                         <p>SubTotal: {{number_format($subTotal,2)}}</p>
                         <p>Tax: $1.00</p>
                         <p>Total: $11.00</p>
-                        <button class="btn btn-primary btn-block">Proceed to Checkout</button>
+                        <a href="{{route('checkout')}}" class="btn btn-primary btn-block">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>

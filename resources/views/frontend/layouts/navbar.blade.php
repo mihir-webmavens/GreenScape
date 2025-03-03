@@ -14,7 +14,7 @@
             <a href="{{route('project')}}" class="nav-item nav-link">Projects</a>
             <a href="{{route('shop')}}" class="nav-item nav-link">Shop</a>
 
-            <div class="col-lg-5 px-5 text-end" >
+            <div class="text-end" >
                 <div class="h-100 d-inline-flex align-items-center mx-n2">
                     <div class="container-fluid  px-0 py-2">
                         <div class="row gx-0 d-none d-lg-flex">
