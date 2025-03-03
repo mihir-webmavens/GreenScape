@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderInformation;
 use App\Mail\Testmail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,6 +11,11 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+
+    public function show (){
+        $users = User::where('role','user')->get();
+        return view('backend.UserList',compact('users'));
+    }
 
     public function RegisterProcess(Request $request)
     {
@@ -50,8 +56,10 @@ class UserController extends Controller
     }
 
     public function mail(){
-       
-        Mail::to('mihir@webmavens.com')->send(new Testmail());
+
+        // Mail::to('mihir@webmavens.com')->send(new Testmail());
+        Mail::to(auth()->user()->email)->send(new OrderInformation("test"));
+
     }
 
     public function details(){

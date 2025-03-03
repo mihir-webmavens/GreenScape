@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderInformation;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 
 class OrderController extends Controller
 {
@@ -42,11 +45,17 @@ class OrderController extends Controller
             'amount' => '-',
         ]);
         Cart::where('user_id', auth()->id())->delete();
+        $Emaildata = [
+            'product' => $ProductDetails,
+            'address' => $address,
+        ];
+        Mail::to(auth()->user()->email)->send(new OrderInformation($Emaildata));
+
         return redirect()->route('shop')->with('success','Order Placed Successfully');
     }
     public function checkoutProcessWithAddress(Request $request){
 
-        
+
        $data = Cart::with('product')->where('user_id', auth()->id())->get();
        $address = Address::where('user_id', auth()->id())->first();
 
@@ -58,16 +67,27 @@ class OrderController extends Controller
                 'price' => $value->product->price,
               ];
        };
-        Order::create([
+        $order = Order::create([
             'user_id' => auth()->id(),
             'products' => json_encode($ProductDetails),
             'address_id' => $address->id,
             'amount' => '-',
         ]);
+
+        $orderId = $order->id;
+        $orderDate = $order->created_at->format('Y-m-d H:i:s');
+
         Cart::where('user_id', auth()->id())->delete();
+        $Emaildata = [
+            'product' => $ProductDetails,
+            'Address' => $address,
+            'OrderId' => $orderId,
+            'OrderDate' => $orderDate,
+        ];
+        Mail::to(auth()->user()->email)->send(new OrderInformation($Emaildata));
+
         return redirect()->route('shop')->with('success','Order Placed Successfully');
     }
-
     public function checkout() {
         $address = Address::where('user_id', auth()->id())->first();
         if($address){

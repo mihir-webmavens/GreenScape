@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\indexController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -22,12 +23,10 @@ Route::view('/register','frontend.register')->name('register');
 Route::post('/register',[UserController::class,'registerProcess'])->name('registerProcess');
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 Route::get('/mail',[UserController::class,'mail'])->name('mail');
-
 Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
-
 Route::middleware('auth')->group(function(){
     Route::get('details',[UserController::class,'details'])->name('details');
     Route::post('UpdateDetails',[UserController::class,'upddate_profile'])->name('upddate_profile');
@@ -41,8 +40,12 @@ Route::middleware('auth')->group(function(){
     Route::get('cart',[ProductController::class,'cart'])->name('cart');
     Route::post('cart/remove',[ProductController::class,'cartItemRemove'])->name('cart.remove');
     Route::get('checkout',[OrderController::class,'checkout'])->name('checkout');
-    Route::post('checkout',[OrderController::class,'checkoutProcess'])->name('checkoutProcess');
+    Route::post('checkoutProcess',[OrderController::class,'checkoutProcess'])->name('checkoutProcess');
     Route::post('checkout',[OrderController::class,'checkoutProcessWithAddress'])->name('checkoutProcessWithAddress');
+    Route::get('dashboard',[indexController::class,'index'])->name('dashboard');
+    Route::prefix('admin')->group(function(){
+        Route::get('UserList',[UserController::class,'show'])->name('admin.userlist');
+    });
 
 });
 Route::view('test', 'Testing');

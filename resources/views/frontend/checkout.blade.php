@@ -14,7 +14,7 @@
                         </ul>
                     </div>
                 @endif
-                @if ($address)
+                @if (@isset($address))
                     <div class="card"></div>
 
                         <div class="card-body">

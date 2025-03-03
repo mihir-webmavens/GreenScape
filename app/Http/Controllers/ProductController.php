@@ -36,12 +36,12 @@ class ProductController extends Controller
        $items = Cart::with('product')->where('user_id',auth()->id())->get();
        return view('frontend.cart',compact('items'));
     }
-    public function cartItemRemove(Request $request){
-    if($request->ajax()){
-        Cart::find($request->cart_id)->delete();
-        return response()->json(['message'=>'Item removed from cart successfully']);
-    }else{
-        return response()->json(['error'=>'Item not removed from cart']);
-    }}
+    // public function cartItemRemove(Request $request){
+    // if($request->ajax()){
+    //     Cart::find($request->cart_id)->delete();
+    //     return response()->json(['message'=>'Item removed from cart successfully']);
+    // }else{
+    //     return response()->json(['error'=>'Item not removed from cart']);
+    // }}
 
 }
