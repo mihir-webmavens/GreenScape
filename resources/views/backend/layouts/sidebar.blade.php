@@ -61,8 +61,8 @@
                   </a>
                 </li>
                 <li>
-                  <a href="components/typography.html">
-                    <span class="sub-item">Add User</span>
+                  <a href="{{route('admin.adminuserlist')}}">
+                    <span class="sub-item">Admin User</span>
                   </a>
                 </li>
               </ul>
@@ -77,7 +77,7 @@
             <div class="collapse" id="sidebarLayouts">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="sidebar-style-2.html">
+                  <a href="{{route('admin.productlist')}}">
                     <span class="sub-item">Manage Products</span>
                   </a>
                 </li>

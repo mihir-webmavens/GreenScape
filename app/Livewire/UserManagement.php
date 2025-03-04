@@ -8,13 +8,15 @@ use Livewire\Component;
 class UserManagement extends Component
 {
 
-    public $users, $user_id, $name, $email, $age, $phone, $role;
+    public $users, $user_id, $name, $email, $age, $phone,$profile, $role;
     public $showModal = false; // Controls modal visibility
-    protected $listeners = ['editUser'];
+    protected $listeners = ['editUser','refreshComponent'];
 
-    public function mount()
+    public $data;
+
+    public function mount($data)
     {
-        $this->users = User::where('role', 'user')->get();
+        $this->users = $data;
     }
 
     public function addUserForm(){
@@ -32,8 +34,8 @@ class UserManagement extends Component
         $this->email = $user->email;
         $this->age = $user->age;
         $this->phone = $user->phone;
+        $this->profile = $user->profile;
         $this->role = $user->role;
-
         // Show modal
         $this->showModal = true;
     }
@@ -47,18 +49,16 @@ class UserManagement extends Component
             'phone' => 'required',
             'role' => 'required',
         ]);
-
-
-            $user = User::updateOrCreate(['id' =>$this->user_id],[
-                'name' => $this->name,
-                'email' => $this->email,
-                'age' => $this->age,
-                'phone' => $this->phone,
-                'role' => $this->role,
-                'profile' => 'img/users/default1.png',
-                'password' => '123456',
-            ]);
-        $this->users = User::where('role', 'user')->get();
+        $user = User::updateOrCreate(['id' =>$this->user_id],[
+            'name' => $this->name,
+            'email' => $this->email,
+            'age' => $this->age,
+            'phone' => $this->phone,
+            'role' => $this->role,
+            'profile' => $this->profile,
+            'password' => bcrypt('123456'),
+        ]);
+         $this->dispatch('refreshComponent');
         if ($this->user_id) {
             session()->flash('message', 'User updated successfully.');
         } else {
@@ -70,7 +70,7 @@ class UserManagement extends Component
     public function RemoveUser($id)
     {
         User::find($id)->delete();
-        $this->users = User::where('role', 'user')->get();
+         $this->dispatch('refreshComponent');
     }
 
 

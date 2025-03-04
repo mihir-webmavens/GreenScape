@@ -2,7 +2,7 @@
 
 @section('content')
 @include('backend.layouts.breadcrumb')
-@livewire('user-management')
+@livewire('user-management', ['data' => $users])
 @endsection
 
 @push('scripts')

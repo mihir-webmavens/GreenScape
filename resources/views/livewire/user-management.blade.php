@@ -86,8 +86,8 @@
                         <div class="form-group">
                             <label>Role</label>
                             <select class="form-control" wire:model="role">
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
+                                <option value="admin" {{$role == "admin" ? "checked" : " "}}>Admin</option>
+                                <option value="user" {{$role == "user" ? "checked" : " "}}>User</option>
                             </select>
                             @error('role') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
