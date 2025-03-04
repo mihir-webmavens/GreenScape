@@ -81,11 +81,7 @@
                     <span class="sub-item">Manage Products</span>
                   </a>
                 </li>
-                <li>
-                  <a href="icon-menu.html">
-                    <span class="sub-item">Add Products</span>
-                  </a>
-                </li>
+
               </ul>
             </div>
           </li>
@@ -98,7 +94,7 @@
             <div class="collapse" id="tables">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="tables/tables.html">
+                  <a href="{{route('admin.orderlist')}}">
                     <span class="sub-item">All Orders</span>
                   </a>
                 </li>

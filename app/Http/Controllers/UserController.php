@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -32,18 +33,17 @@ class UserController extends Controller
             'profile' => 'max:2048',
         ]);
 
+            // dd($request->all());
+
         if($request->hasFile('profile')){
             $image = $request->file('profile');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('img/users'), $filename);
-            $imagePath = 'img/users/' . $filename;
+            $imagePath = $image->store('Users','public');
             $users['profile'] = $imagePath;
 
         }else{
-            $users['profile'] = 'img/users/default1.png';
+            $users['profile'] = 'Users/default1.png';
 
         }
-
 
         User::create($users);
 
@@ -84,16 +84,13 @@ class UserController extends Controller
             User::find(Auth::id())->get();
             $old_image = User::find(Auth::id())->profile;
             if($old_image != 'img/users/default1.png'){
-                unlink(public_path($old_image));
+                Storage::disk('public')->delete($old_image);
             }
 
           $image = $request->file('profile');
-          $filename = time() . '.' . $image->getClientOriginalExtension();
-          $image->move(public_path('img/users'), $filename);
-          $imagePath = 'img/users/' . $filename;
+          $imagePath = $image->store('Users','public');
           $validate['profile'] = $imagePath;
         }
-
           User::where('id',Auth::id())->update($validate);
         return redirect()->route('details')->with('status','Profile updated successfully');
 

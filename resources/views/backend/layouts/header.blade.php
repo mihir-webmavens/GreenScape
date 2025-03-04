@@ -329,7 +329,7 @@
             >
               <div class="avatar-sm">
                 <img
-                  src="{{asset(auth()->user()->profile)}}"
+                  src="{{ asset('storage/'.Auth::user()->profile) }}"
                   alt="..."
                   class="avatar-img rounded-circle"
                 />

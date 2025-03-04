@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->text('products');
-            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger(column: 'address_id');
             $table->string('amount');
+            $table->string('status')->nullable()->default('pending');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
         });
     }
-
 
     public function down(): void
     {

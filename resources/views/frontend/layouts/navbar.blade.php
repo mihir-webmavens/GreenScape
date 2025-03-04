@@ -21,7 +21,7 @@
                             <div class="col-lg-12 px-5 text-end">
                                 <div class="h-100 d-inline-flex align-items-center mx-n2">
                                     @auth
-                                    <img src="{{ asset(Auth::user()->profile) }}" alt="Profile Image" class="rounded-circle" style="object-fit: cover" width="40" height="40">
+                                    <img src="{{ asset('storage/'.Auth::user()->profile) }}" alt="Profile Image" class="rounded-circle" style="object-fit: cover" width="40" height="40">
                                     <div class="dropdown">
                                         <button class="btn btn-link text-dark dropdown-toggle profile_btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                             Profile
@@ -29,6 +29,7 @@
                                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                             <li><a class="dropdown-item" href="{{route('details')}}">Profile</a></li>
                                             <li><a class="dropdown-item" href="{{route('cart')}}">Cart</a></li>
+                                            <li><a class="dropdown-item" href="{{route('Order')}}">Order</a></li>
                                             <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
                                         </ul>
                                     </div>

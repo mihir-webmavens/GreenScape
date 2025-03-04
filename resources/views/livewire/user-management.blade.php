@@ -31,7 +31,7 @@
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                        <td><img src="{{ asset($user->profile) }}" alt="" class="img-fluid rounded-circle" style="max-width: 50px; max-height: 50px;"></td>
+                        <td><img src="{{ asset('storage/'.$user->profile) }}" alt="" class="img-fluid rounded-circle" style="max-width: 50px; max-height: 50px;"></td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->age }}</td>
                         <td>{{ $user->email }}</td>
@@ -61,7 +61,7 @@
                     <h5 class="modal-title">Edit User</h5>
                     <button type="button" class="close" wire:click="closeModal">&times;</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" wire:poll.5000ms="$refresh">
                     <form wire:submit.prevent="updateUser">
                         <div class="form-group">
                             <label>Name</label>

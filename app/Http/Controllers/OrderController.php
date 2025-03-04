@@ -6,6 +6,7 @@ use App\Mail\OrderInformation;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -99,6 +100,38 @@ class OrderController extends Controller
         }
 
 
+    }
+
+    public function UserOrders(){
+        $orders = Order::with(['user'])->where('user_id', auth()->id())->get();
+        return view ('frontend.User-order',compact('orders'));
+    }
+
+    public function UserOrdersDetails($id){
+        $productId = [];
+        $quantity = [];
+       $order = Order::find($id);
+       $data = json_decode($order->products, true);
+       foreach($data as $val){
+         $productId[] = $val['product_id'];
+         $quantity[] = $val['quantity'];
+       }
+       $products = Product::whereIn('id',$productId)->get();
+        return view('frontend.user-order-details',compact('order','products','quantity'));
+    }
+
+
+    // admin side
+
+    public function orderlist(){
+        $orders = Order::with(['user', 'address'])->get();
+        $productId = [];
+        // foreach( $orders as $order){
+        //     $productId[] = json_decode($order->products);
+        // }
+        // return $orders;
+        // // $products = Products::where()
+        return view("backend.orderList",compact('orders'));
     }
 
 }

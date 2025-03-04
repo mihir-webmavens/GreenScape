@@ -27,11 +27,11 @@
                         <div class="form-group text-center">
                             @if(auth()->user()->profile)
                                 <label for="profile">
-                                    <img src="{{ asset(auth()->user()->profile) }}" alt="Profile Image" style="object-fit: cover" width="120" height="120" class="rounded-circle mb-3">
+                                    <img src="{{ asset('storage/'.auth()->user()->profile) }}" alt="Profile Image" style="object-fit: cover" width="120" height="120" class="rounded-circle mb-3">
                                 </label>
                             @else
                                 <label for="profile">
-                                    <img src="{{asset('img/users/default1.png')}}" alt="Profile Image" width="120" class="rounded-circle mb-3">
+                                    <img src="{{asset('storage/default1.png')}}" alt="Profile Image" width="120" class="rounded-circle mb-3">
                                 </label>
                             @endif
                             <input type="file" class="form-control-file" id="profile" name="profile">

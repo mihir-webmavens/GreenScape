@@ -7,11 +7,9 @@ use Livewire\Component;
 
 class UserManagement extends Component
 {
-
-    public $users, $user_id, $name, $email, $age, $phone,$profile, $role;
+    public $users, $user_id, $name, $email, $age, $phone,$profile, $role,$password;
     public $showModal = false; // Controls modal visibility
     protected $listeners = ['editUser','refreshComponent'];
-
     public $data;
 
     public function mount($data)
@@ -21,7 +19,10 @@ class UserManagement extends Component
 
     public function addUserForm(){
         $this->name = $this->email = $this->age = $this->phone = $this->role = '';
+        $this->profile = "Users/default1.png";
         $this->showModal = true;
+        $this->dispatch('refreshComponent');
+
     }
 
     public function editUser($id)
@@ -36,6 +37,11 @@ class UserManagement extends Component
         $this->phone = $user->phone;
         $this->profile = $user->profile;
         $this->role = $user->role;
+        if(isset($user->password)){
+            $this->password = $user->password;
+        }else{
+            $this->password = "123456";
+        }
         // Show modal
         $this->showModal = true;
     }
@@ -49,6 +55,8 @@ class UserManagement extends Component
             'phone' => 'required',
             'role' => 'required',
         ]);
+
+       
         $user = User::updateOrCreate(['id' =>$this->user_id],[
             'name' => $this->name,
             'email' => $this->email,
@@ -58,19 +66,22 @@ class UserManagement extends Component
             'profile' => $this->profile,
             'password' => bcrypt('123456'),
         ]);
-         $this->dispatch('refreshComponent');
         if ($this->user_id) {
             session()->flash('message', 'User updated successfully.');
         } else {
             session()->flash('message', 'User created successfully.');
         }
         $this->showModal = false;
+        $this->dispatch('refreshComponent');
+
     }
 
     public function RemoveUser($id)
     {
         User::find($id)->delete();
-         $this->dispatch('refreshComponent');
+        session()->flash('message', 'User created successfully.');
+
+        $this->dispatch('refreshComponent');
     }
 
 
