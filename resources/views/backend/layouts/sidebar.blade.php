@@ -3,7 +3,7 @@
     <div class="sidebar-logo">
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark">
-        <a href="index.html" class="logo">
+        <a href="{{route("dashboard")}}" class="logo">
             <img
             src="{{asset('img/kaiadmin/logo_light.svg')}}"
             alt="navbar brand"
@@ -35,7 +35,7 @@
               class="collapsed"
               aria-expanded="false"
             >
-            <a href="../demo1/index.html">
+            <a href="{{route('dashboard')}}">
                 <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>

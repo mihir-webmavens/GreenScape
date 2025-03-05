@@ -13,13 +13,17 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
 
+    public function test(Request $request){
+        return $request->all();
+    }
+
     public function show (){
         $users = User::where('role','user')->get();
         return view('backend.UserList',compact('users'));
     }
     public function AdminUsers (){
         $users = User::where('role','admin')->get();
-        return view('backend.UserList',compact('users'));
+        return view('backend.AdminUserList',compact('users'));
     }
 
     public function RegisterProcess(Request $request)

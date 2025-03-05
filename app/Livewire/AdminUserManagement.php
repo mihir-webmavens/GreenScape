@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Component;
 
-class UserManagement extends Component
+class AdminUserManagement extends Component
 {
     public $users, $user_id, $name, $email, $age, $phone,$profile, $role,$password;
     public $showModal = false; // Controls modal visibility
@@ -14,7 +14,7 @@ class UserManagement extends Component
 
     public function GetUser()
     {
-        $this->users = User::where('role','user')->get();
+        $this->users = User::where('role',operator: 'admin')->get();
     }
 
     public function addUserForm(){
@@ -75,7 +75,7 @@ class UserManagement extends Component
     public function RemoveUser($id)
     {
         User::find($id)->delete();
-        session()->flash('message', 'User Deleted Successfully');
+        session()->flash('message', value: 'User Deleted successfully.');
     }
 
 
@@ -87,6 +87,7 @@ class UserManagement extends Component
     public function render()
     {
         $this->GetUser();
-        return view('livewire.user-management');
+        return view('livewire.admin-user-management');
     }
 }
+

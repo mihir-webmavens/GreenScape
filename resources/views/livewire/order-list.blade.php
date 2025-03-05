@@ -8,8 +8,7 @@
 
         <div class="card">
           <div class="card-header d-flex align-items-center justify-content-between">
-            <h4 class="card-title">User List</h4>
-            <div wire:click="addProduct" class="btn btn-primary btn-round">Add Product</div>
+            <h4 class="card-title">Order List</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">

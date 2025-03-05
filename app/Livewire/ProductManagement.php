@@ -17,7 +17,7 @@ class ProductManagement extends Component
 
     public $showModal = false;
 
-    public function mount()
+    public function GetProducta()
     {
         $this->products = Product::all();
     }
@@ -62,25 +62,20 @@ class ProductManagement extends Component
         $fileName = $this->image;
         if ($this->product_id) {
             if ($this->image) {
-                    if ($this->image && file_exists(public_path( 'storage/' . $product->image))) {
-                        Storage::disk('public')->delete($product->image);
-                    }
-                    $imageName = $this->image->store('Products', 'public');
-                } else {
-                    $imageName = $product->image;
+                if ($this->image && file_exists(public_path('storage/' . $product->image))) {
+                    Storage::disk('public')->delete($product->image);
                 }
-
-        }else{
-            if($this->image){
                 $imageName = $this->image->store('Products', 'public');
-            }else{
-                $imageName = "Products/default.jpg";
-
+            } else {
+                $imageName = $product->image;
             }
-
+        } else {
+            if ($this->image) {
+                $imageName = $this->image->store('Products', 'public');
+            } else {
+                $imageName = "Products/default.jpg";
+            }
         }
-
-
         Product::updateOrCreate(['id' => $this->product_id], [
             'name' => $this->name,
             'sku' => $this->sku,
@@ -89,20 +84,27 @@ class ProductManagement extends Component
             'brand' => $this->brand,
             'image' => $imageName,
         ]);
-
         if ($this->product_id) {
             session()->flash('message', 'Product updated successfully.');
         } else {
             session()->flash('message', 'Product added successfully.');
         }
 
-        $this->dispatch('refreshComponent');
+        $this->products = Product::all();
+
         $this->showModal = false;
     }
 
+    public function RemoveProduct($id){
+        $product = Product::find($id);
+        if ($product) {
+            $product->delete();
+        }
+    }
 
     public function render()
     {
+        $this->GetProducta();
         return view('livewire.product-management');
     }
 }

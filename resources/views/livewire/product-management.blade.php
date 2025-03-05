@@ -41,7 +41,7 @@
                             <td>{{ $product->updated_at }}</td>
                             <td>
                                 <button class="btn btn-sm my-1 btn-primary" wire:click="editProduct({{$product->id}})" >Edit</button>
-                                <button class="btn btn-sm my-1 btn-danger" >Delete</button>
+                                <button class="btn btn-sm my-1 btn-danger" wire:click="RemoveProduct({{$product->id}})" >Delete</button>
                             </td>
                         </tr>
                         @endforeach

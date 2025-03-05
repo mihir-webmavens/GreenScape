@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\admin\indexController;
+use App\Http\Controllers\PlantController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WebinarController;
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -44,7 +47,15 @@ Route::middleware('auth')->group(function () {
     Route::post('checkout', [OrderController::class, 'checkoutProcessWithAddress'])->name('checkoutProcessWithAddress');
     Route::get('dashboard', [indexController::class, 'index'])->name('dashboard');
     Route::get('order',  [OrderController::class, 'UserOrders'])->name('Order');
-    Route::get('Order-details/{id}', [OrderController::class, 'UserOrdersDetails'])->name( 'order.details');
+    Route::get('Order-details/{id}', [OrderController::class, 'UserOrdersDetails'])->name('order.details');
+    Route::get('Add-New-Plant', [PlantController::class, 'AddNewPlant'])->name('addnewplant');
+    Route::post('Insert-New-Plant', [PlantController::class, 'InsertNewPlant'])->name('InsertNewPlant');
+    Route::get('Edit-Plant/{id}', [PlantController::class, 'editPlant'])->name('editPlant');
+    Route::post('Delete-Plant/{id}', [PlantController::class, 'deletePlant'])->name('deletePlant');
+    Route::get('Webinar', [WebinarController::class, 'show'])->name('webinar');
+
+  Route::get('plant',[PlantController::class,'show'])->name('plant');
+
     Route::prefix(prefix: 'admin')->group(function () {
         Route::get('UserList', [UserController::class, 'show'])->name('admin.userlist');
         Route::get('AdminUserList', [UserController::class, 'AdminUsers'])->name('admin.adminuserlist');
@@ -52,4 +63,26 @@ Route::middleware('auth')->group(function () {
         Route::get('OrderList', [OrderController::class, 'orderlist'])->name('admin.orderlist');
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TETING...
 Route::view('test', 'Testing');
+Route::post('test', [UserController::class,'test'])->name('test');

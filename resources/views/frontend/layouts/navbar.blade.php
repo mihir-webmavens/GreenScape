@@ -6,13 +6,28 @@
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="collapse navbar-collapse align-items-center" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="{{route('index')}}" class="nav-item nav-link active">Home</a>
             <a href="{{route('about')}}" class="nav-item nav-link">About</a>
             <a href="{{route('service')}}" class="nav-item nav-link">Services</a>
             <a href="{{route('project')}}" class="nav-item nav-link">Projects</a>
             <a href="{{route('shop')}}" class="nav-item nav-link">Shop</a>
+            <a href="{{route('shop')}}" class="nav-item nav-link">Shop</a>
+           <div class="h-100 d-inline-flex align-items-center mx-n2">
+            <div class="dropdown">
+                <button class="btn btn-link text-dark dropdown-toggle shadow-none nav-link" type="button" id="educational" data-bs-toggle="dropdown" aria-expanded="false">
+                    Learn
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="educational">
+                    <li><a class="dropdown-item" href="{{route('details')}}">Blog & Vlog</a></li>
+                    <li><a class="dropdown-item" href="{{route('plant')}}">Plant Care</a></li>
+                    <li><a class="dropdown-item" href="{{route('webinar')}}">Webinar</a></li>
+                </ul>
+            </div>
+
+
+        </div>
 
             <div class="text-end" >
                 <div class="h-100 d-inline-flex align-items-center mx-n2">

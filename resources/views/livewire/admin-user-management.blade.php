@@ -87,10 +87,9 @@
                             <label>Role</label>
                             <select class="form-control" wire:model="role">
                                 <option value="" selected disabled>Select Role</option>
-                                <option value="user" {{$role == "user" ? "selected" : " "}} selected >User</option>
-                                <option value="admin" {{$role == "admin" ? "selected" : " "}}  >Admin</option>
+                                <option value="admin" {{$role == "admin" ? "selected" : " "}} selected >Admin</option>
+                                <option value="user" {{$role == "user" ? "selected" : ""}}>User</option>
                             </select>
-                            
                             @error('role') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <button type="submit" class="btn btn-success">Update User</button>
