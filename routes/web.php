@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -32,7 +33,7 @@ Route::get('reset-password/{token}', [ResetPasswordController::class, 'showReset
 Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::middleware('auth')->group(function () {
     Route::get('details', [UserController::class, 'details'])->name('details');
-    Route::post('UpdateDetails', [UserController::class, 'upddate_profile'])->name('upddate_profile');
+    Route::post('updateDetails', [UserController::class, 'upddate_profile'])->name('upddate_profile');
     Route::view('/about', 'frontend.about')->name('about');
     Route::view('/contact', 'frontend.contact')->name('contact');
     Route::view('/feature', 'frontend.feature')->name('feature');
@@ -47,20 +48,21 @@ Route::middleware('auth')->group(function () {
     Route::post('checkout', [OrderController::class, 'checkoutProcessWithAddress'])->name('checkoutProcessWithAddress');
     Route::get('dashboard', [indexController::class, 'index'])->name('dashboard');
     Route::get('order',  [OrderController::class, 'UserOrders'])->name('Order');
-    Route::get('Order-details/{id}', [OrderController::class, 'UserOrdersDetails'])->name('order.details');
-    Route::get('Add-New-Plant', [PlantController::class, 'AddNewPlant'])->name('addnewplant');
-    Route::post('Insert-New-Plant', [PlantController::class, 'InsertNewPlant'])->name('InsertNewPlant');
-    Route::get('Edit-Plant/{id}', [PlantController::class, 'editPlant'])->name('editPlant');
-    Route::post('Delete-Plant/{id}', [PlantController::class, 'deletePlant'])->name('deletePlant');
-    Route::get('Webinar', [WebinarController::class, 'show'])->name('webinar');
-
-  Route::get('plant',[PlantController::class,'show'])->name('plant');
-
-    Route::prefix(prefix: 'admin')->group(function () {
-        Route::get('UserList', [UserController::class, 'show'])->name('admin.userlist');
-        Route::get('AdminUserList', [UserController::class, 'AdminUsers'])->name('admin.adminuserlist');
-        Route::get('ProductList', [ProductController::class, 'productlist'])->name('admin.productlist');
-        Route::get('OrderList', [OrderController::class, 'orderlist'])->name('admin.orderlist');
+    Route::get('order-details/{id}', [OrderController::class, 'UserOrdersDetails'])->name('order.details');
+    Route::get('add-new-plant', [PlantController::class, 'AddNewPlant'])->name('addnewplant');
+    Route::post('insert-new-plant', [PlantController::class, 'InsertNewPlant'])->name('InsertNewPlant');
+    Route::get('edit-plant/{id}', [PlantController::class, 'editPlant'])->name('editPlant');
+    Route::post('delete-plant/{id}', [PlantController::class, 'deletePlant'])->name('deletePlant');
+    Route::get('webinar', [WebinarController::class, 'show'])->name('webinar');
+    Route::get('blog', [BlogController::class, 'show'])->name('blog');
+    Route::get('plant',[PlantController::class,'show'])->name('plant');
+    Route::prefix('admin')->group(function () {
+        Route::get('userList', [UserController::class, 'show'])->name('admin.userlist');
+        Route::get('adminUserList', [UserController::class, 'AdminUsers'])->name('admin.adminuserlist');
+        Route::get('productList', [ProductController::class, 'productlist'])->name('admin.productlist');
+        Route::get('orderList', [OrderController::class, 'orderlist'])->name('admin.orderlist');
+        Route::get('blog', [BlogController::class, 'index'])->name('admin.blog');
+        Route::get('care-plant', [PlantController::class, 'carePlant'])->name('admin.care-plant');
     });
 });
 

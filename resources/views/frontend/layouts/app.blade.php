@@ -25,11 +25,16 @@
     <link href="{{asset('frontend/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">
 
+    <!-- fullcalendar Stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.css">
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
+    
+    
 
 
     
@@ -62,6 +67,7 @@
     <script src="{{asset('frontend/lib/isotope/isotope.pkgd.min.js')}}"></script>
     <script src="{{asset('frontend/lib/lightbox/js/lightbox.min.js')}}"></script>
 
+   
     <!-- Template Javascript -->
     <script src="{{asset('frontend/js/main.js')}}"></script>
 

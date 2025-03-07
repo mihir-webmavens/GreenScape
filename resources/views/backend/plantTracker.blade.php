@@ -1,11 +1,8 @@
 @extends('backend.layouts.app');
 
 @section('content')
-
-@livewire('product-management')
-
+    @livewire('plant-tracker')
 @endsection
-
 @push('scripts')
 <script>
     let table = new DataTable('#myTable', {

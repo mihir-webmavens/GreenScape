@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Plant extends Model
+class CareTracker extends Model
 {
-    protected $guarded= [];
+ protected $guarded=[];
 }

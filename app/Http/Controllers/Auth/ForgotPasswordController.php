@@ -37,14 +37,17 @@ class ForgotPasswordController extends Controller
         // Create a unique token
         $token = Str::random(60);
 
-
-
-        // Store the token in the database (e.g., a password_resets table)
-        DB::table('password_reset_tokens')->insert([
-            'email' => $request->email,
-            'token' => $token,
-            'created_at' => now(),
-        ]);
+        $useremail = DB::table('password_reset_tokens')->where('email', $request->email)->first();
+        
+        if ($useremail) { 
+            DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+        }else{
+            DB::table('password_reset_tokens')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => now(),
+            ]);
+        }
 
 
         // Send the reset link via email
