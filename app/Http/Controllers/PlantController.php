@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class PlantController extends Controller
 {
     public function show(){
-        $plants = Plant::get();
+        $plants = Plant::all();
         return view("frontend.plant",compact("plants"));
     }
   

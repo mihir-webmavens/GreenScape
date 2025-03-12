@@ -13,7 +13,7 @@ class PlantTracker extends Component
 {
     use WithFileUploads;
     public $plants, $plant_id, $name, $image;
-    public $events,$user_id,$title,$start,$end,$color;
+    public $events, $user_id, $title, $start, $end, $color;
     public $showModal = false, $eventList = false;
 
     public function removePlant($id)
@@ -32,25 +32,24 @@ class PlantTracker extends Component
     }
     public function addOrUpdateEvent()
     {
-            $this->validate([
-                'title'=>'required',
-                'start' => 'required|date|after_or_equal:today',
-                'end'=>'required',
-                'color'=>'required',
-            ]);
+        $this->validate([
+            'title' => 'required',
+            'start' => 'required|date|after_or_equal:today',
+            'end' => 'required',
+            'color' => 'required',
+        ]);
         CareTracker::Create([
-            'title'=>$this->title,
-            'start'=>$this->start,
-            'end'=>$this->end,
-            'color'=>$this->color,
-            'plant_id'=>$this->plant_id,
+            'title' => $this->title,
+            'start' => $this->start,
+            'end' => $this->end,
+            'color' => $this->color,
+            'plant_id' => $this->plant_id,
         ]);
 
         $this->title = null;
         $this->start = null;
         $this->end = null;
         $this->color = null;
-        
     }
 
     public function addPlant()
@@ -71,31 +70,41 @@ class PlantTracker extends Component
     {
         $validate = $this->validate([
             'name' => 'required',
-            'image' => 'nullable|max:1024',
+            'image' => 'nullable',
         ]);
         // complate code for image if image exist old image will be delte.
         $plant = Plant::find($this->plant_id);
-        if ($this->plant_id) {
-            if ($this->image) {
-                if ($this->image !== $plant->image) {
-                    if ($this->image && file_exists(public_path('storage/' . $plant->image))) {
-                        Storage::disk('public')->delete($plant->image);
-                    }
+        // if ($this->plant_id) {
+        //     if ($this->image) {
+        //         if ($this->image !== $plant->image) {
+        //             if ($this->image && file_exists(public_path('storage/' . $plant->image))) {
+        //                 Storage::disk('public')->delete($plant->image);
+        //             }
+        //             $imageName = $this->image->store('Plants', 'public');
+        //         } else {
+        //             $imageName = $plant->image;
+        //         }
+        //     } else {
+        //         $imageName = $plant->image;
+        //     }
+        // } else {
+        //     if ($this->image) {
+        //         $imageName = $this->image->store('Plants', 'public');
+        //         // $imageName = $this->image->storeAs('Plants','sdfrd', 'public');
+        //         dd($imageName);
+        //     } else {
+        //         $imageName = "Plants/default.jpg";
+        //         dd($imageName);
+        //     }
+        // }
+
+                if ($this->image) {
                     $imageName = $this->image->store('Plants', 'public');
-                }else{
-                    $imageName = $plant->image;
+                } else {
+                    $imageName = $plant ? $plant->image : 'Plants/default.jpg';
                 }
-            } else {
-                $imageName = $plant->image;
-            }
-        } else {
-            if ($this->image) {
-                // dd($this->image);
-                $imageName = $this->image->store('Plants', 'public');
-            } else {
-                $imageName = "Plants/default.jpg";
-            }
-        }
+
+
 
         Plant::updateOrCreate(
             ['id' => $this->plant_id],

@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" src="{{asset($product->image)}}" alt="Card image cap" id="product-detail">
+                        <img class="card-img img-fluid" src="{{asset('storage/'.$product->image)}}" alt="Card image cap" id="product-detail">
                     </div>
 
                 </div>

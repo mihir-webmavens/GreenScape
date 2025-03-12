@@ -1,6 +1,5 @@
 <div>
     <div>
-        <!-- User Table -->
         <div class="col-md-12">
             @if (session('message'))
                 <div class="alert alert-success">
@@ -49,13 +48,12 @@
             </div>
         </div>
 
-        <!-- Edit User Modal -->
         @if ($showModal)
             <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5)">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Edit User</h5>
+                            <h5 class="modal-title">Edit Plant</h5>
                             <button type="button" class="close" wire:click="closeModal">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -76,7 +74,7 @@
                                 </div>
                                
 
-                                <button type="submit" class="btn btn-success">Update User</button>
+                                <button type="submit" class="btn btn-success">Add/Update</button>
                                 <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancel</button>
                             </form>
                         </div>
@@ -90,7 +88,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit User</h5>
+                        <h5 class="modal-title">Edit Plant</h5>
                         <button type="button" class="close" wire:click="closeModal">&times;</button>
                     </div>
                     <div class="modal-body">

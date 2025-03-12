@@ -1,24 +1,25 @@
 <?php
 
-use App\Http\Controllers\admin\indexController;
+use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebinarController;
 
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('index');
+Route::get('/', [\App\Http\Controllers\IndexController::class,'index'])->name('index');
 
 Route::fallback(function () {
     return view('frontend.404');
 });
+
+
 
 Route::get('/shop', [ProductController::class, 'shopShow'])->name('shop');
 Route::view('/login', 'frontend.login')->name('login');
@@ -46,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('checkout', [OrderController::class, 'checkout'])->name('checkout');
     Route::post('checkoutProcess', [OrderController::class, 'checkoutProcess'])->name('checkoutProcess');
     Route::post('checkout', [OrderController::class, 'checkoutProcessWithAddress'])->name('checkoutProcessWithAddress');
-    Route::get('dashboard', [indexController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [IndexController::class, 'index'])->name('dashboard');
     Route::get('order',  [OrderController::class, 'UserOrders'])->name('Order');
     Route::get('order-details/{id}', [OrderController::class, 'UserOrdersDetails'])->name('order.details');
     Route::get('add-new-plant', [PlantController::class, 'AddNewPlant'])->name('addnewplant');
@@ -54,6 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('edit-plant/{id}', [PlantController::class, 'editPlant'])->name('editPlant');
     Route::post('delete-plant/{id}', [PlantController::class, 'deletePlant'])->name('deletePlant');
     Route::get('webinar', [WebinarController::class, 'show'])->name('webinar');
+    Route::get('community', [CommunityController::class, 'index'])->name('community');
+
     Route::get('blog', [BlogController::class, 'show'])->name('blog');
     Route::get('plant',[PlantController::class,'show'])->name('plant');
     Route::prefix('admin')->group(function () {

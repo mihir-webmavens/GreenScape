@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('color');
             $table->timestamps();
 
-            $table->foreign('plant_id')->references('id')->on('plants');
+            $table->foreign('plant_id')->references('id')->on('plants')->onDelete('cascade');
         });
     }
 

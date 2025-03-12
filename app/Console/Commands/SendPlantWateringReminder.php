@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Mail\PlantWateringReminder;
+use App\Models\CareTracker;
 use Carbon\Carbon;
-use App\Models\Plant;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -31,7 +31,7 @@ class SendPlantWateringReminder extends Command
     public function handle()
     {
         $today = Carbon::today()->toDateString();
-        $plants = Plant::with('user')->whereDate('next_watering',$today)->get();
+        $plants = CareTracker::with('user')->whereDate('next_watering',$today)->get();
         log::info($plants);
         foreach($plants as $plant){
             Mail::to($plant->user->email)->send(new PlantWateringReminder($plant));

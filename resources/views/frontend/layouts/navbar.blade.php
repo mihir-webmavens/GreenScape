@@ -22,6 +22,7 @@
                       <li><a class="dropdown-item" href="{{ route('blog') }}">Blog & Vlog</a></li>
                       <li><a class="dropdown-item" href="{{ route('plant') }}">Plant Care</a></li>
                       <li><a class="dropdown-item" href="{{ route('webinar') }}">Webinar</a></li>
+                      <li><a class="dropdown-item" href="{{ route('community') }}">Community</a></li>
                   </ul>
               </div>
               <div class="d-flex align-items-center me-3">

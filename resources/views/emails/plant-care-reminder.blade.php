@@ -40,17 +40,13 @@
     <div class="container">
         <div class="header">
             <img src="{{ asset('images/logo.png') }}" alt="GreenScape Logo">
-            <h1>Plant Watering Reminder</h1>
+            <h1>Plant Careing Reminder</h1>
         </div>
         <div class="content">
-            <p>Dear {{ $plant->user->name }},</p>
-            <p>This is a friendly reminder to water your plants today <b>{{$plant->name}}</b> . Keeping your plants hydrated is essential for their health and growth.</p>
-            <p>Here are some tips for watering your plants:</p>
-            <ul>
-                <li>Water your plants early in the morning or late in the evening.</li>
-                <li>Ensure the water reaches the roots.</li>
-                <li>Avoid overwatering to prevent root rot.</li>
-            </ul>
+            <p>Dear {{ $user }},</p>
+            <p>We hope you're enjoying your green companions! 🌿 Here’s a friendly reminder of your scheduled plant care tasks for {{$event->start . " To " . $event->end}}.</p>
+            <h2><b>{{ $event->title }}</b></h2>
+            <p>We hope you have a great time at the Careing!</p>
             <p>Thank you for being a part of the GreenScape community!</p>
             <p>Best regards,<br>The GreenScape Team</p>
         </div>

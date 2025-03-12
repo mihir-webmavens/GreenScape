@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 class OrderInformation extends Mailable
 {
     use Queueable, SerializesModels;
-
+ 
     public $data;
     /**
      * Create a new message instance.
@@ -40,6 +40,9 @@ class OrderInformation extends Mailable
     {
         return new Content(
             view: 'Mail.OrderConformation',
+            with: [
+                'data' => $this->data,
+            ],
         );
     }
 

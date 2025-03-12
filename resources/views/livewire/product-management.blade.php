@@ -1,5 +1,4 @@
 <div>
-    <!-- User Table -->
     <div class="col-md-12">
         @if (session('message'))
             <div class="alert alert-success">
@@ -9,7 +8,7 @@
 
         <div class="card">
           <div class="card-header d-flex align-items-center justify-content-between">
-            <h4 class="card-title">User List</h4>
+            <h4 class="card-title">Product List</h4>
             <div wire:click="addProduct" class="btn btn-primary btn-round">Add Product</div>
           </div>
           <div class="card-body">
@@ -52,13 +51,12 @@
         </div>
     </div>
 
-    <!-- Edit User Modal -->
     @if ($showModal)
     <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5)">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit User</h5>
+                    <h5 class="modal-title">Edit Product</h5>
                     <button type="button" class="close" wire:click="closeModal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -94,7 +92,7 @@
                             @error('description') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-success">Update User</button>
+                        <button type="submit" class="btn btn-success">Update Product</button>
                         <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancel</button>
                     </form>
                 </div>

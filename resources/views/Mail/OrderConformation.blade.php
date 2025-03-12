@@ -55,7 +55,6 @@
             <ul>
                 <li>Order Number: {{ $data['OrderId'] }}</li>
                 <li>Order Date: {{ $data['OrderDate'] }}</li>
-                {{-- <li>Total Amount: {{ $data['total_amount'] }}</li> --}}
             </ul>
             <p>We will notify you once your order has been shipped.</p>
             <p>Thank you for shopping with us!</p>

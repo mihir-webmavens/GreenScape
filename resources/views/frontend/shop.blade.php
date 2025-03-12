@@ -3,7 +3,7 @@
 @section('content')
       <!-- Start Content -->
       <div class="container py-5">
-        <div class="row">
+        <div class="row d-flex align-items-center justify-content-center">
 
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -17,7 +17,7 @@
               
                 <div class="row">
                     @foreach ($products as $product)
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-lg-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0" >
                                 <img class="card-img rounded-0 img-fluid" src="{{asset('storage/'.$product->image)}}" alt="Product Image" style="height: 257px;">

@@ -9,18 +9,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PlantWateringReminder extends Mailable
+class EventReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $plant;
+    public $event;
+    public $user;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($plant)
+    public function __construct($event,$user)
     {
-        $this->plant = $plant;
+        $this->event = $event;
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +31,7 @@ class PlantWateringReminder extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Plant Watering Reminder',
+            subject: '🌱 Your Plant Care Schedule for '. $this->event->start .  '🌿',
         );
     }
 
@@ -39,8 +41,11 @@ class PlantWateringReminder extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.plant-watering-reminder',
-            with: ['plant' => $this->plant],
+            view: 'emails.plant-care-reminder',
+            with: [
+                'event' => $this->event,
+                'user' => $this->user,
+            ],
         );
     }
 
